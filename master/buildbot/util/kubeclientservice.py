@@ -191,13 +191,12 @@ class KubeInClusterConfigLoader(KubeConfigLoaderBase):
             'tcp', 'https')
         self.config['verify'] = self.kube_cert_file
         with open(self.kube_token_file) as token_content:
-            token = token_content.read().decode('utf-8').strip()
+            token = token_content.read().strip()
             self.config['headers'] = {
                 'Authorization': 'Bearer {0}'.format(token)
             }
         with open(self.kube_namespace_file) as namespace_content:
-            self.config['namespace'] = namespace_content.read().decode(
-                'utf-8').strip()
+            self.config['namespace'] = namespace_content.read().strip()
 
     def getConfig(self):
         return self.config
